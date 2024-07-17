@@ -1,6 +1,5 @@
 var bin_npm = "npm";
 var bin_node =  process.argv[0]||"node";
-console.log("mengekseskusi:",process.argv.join(" "));
 if (process.argv.includes("--dalam-docker")){
   process.argv[0] = `/usr/local/bin/node`;
   process.argv = process.argv.filter(v => (v != "--dalam-docker"));
@@ -13,7 +12,6 @@ async function run() {
     if(process.argv[2] == `y`){
         global.require = require;
         try {
-            console.log("menjalankan:",process.argv.join(" "));
             require(`./${filenya}`);
         } catch (error) {
             const { exec } = require('child_process');
