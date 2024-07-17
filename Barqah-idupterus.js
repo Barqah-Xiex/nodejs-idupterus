@@ -13,7 +13,7 @@ async function run() {
     if(process.argv[2] == `y`){
         global.require = require;
         try {
-            console.log("mengekseskusi:",process.argv.join(" "));
+            console.log("menjalankan:",process.argv.join(" "));
             require(`./${filenya}`);
         } catch (error) {
             const { exec } = require('child_process');
