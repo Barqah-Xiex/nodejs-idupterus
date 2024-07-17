@@ -7,7 +7,7 @@ if (process.argv.includes("--dalam-docker")){
   bin_node = process.argv[0];
 }
 const [binnya,fileini,filenya,...argnya] = process.argv;
-
+process.argv = [binnya, filenya, ...argnya];
 async function run() {
     if(process.argv[2] == `y`){
         global.require = require;
