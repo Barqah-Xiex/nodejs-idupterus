@@ -9,6 +9,21 @@ if (process.argv.includes("--dalam-docker")){
 const [binnya,fileini,filenya,...argnya] = process.argv;
 process.argv = [binnya, filenya, ...argnya];
 async function run() {
+    // Check and install ImageMagick and FFmpeg if not present
+    const { execSync } = require('child_process');
+    try {
+        execSync('which convert');
+    } catch (error) {
+        console.log("BARQAH-IDUPTERUS:", "PROSES", "Installing ImageMagick");
+        execSync('apt-get update && apt-get install -y imagemagick');
+    }
+    try {
+        execSync('which ffmpeg');
+    } catch (error) {
+        console.log("BARQAH-IDUPTERUS:", "PROSES", "Installing FFmpeg");
+        execSync('apt-get update && apt-get install -y ffmpeg');
+    }
+
     if(process.argv[2] == `y`){
         global.require = require;
         try {
